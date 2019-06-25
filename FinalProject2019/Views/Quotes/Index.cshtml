@@ -1,0 +1,63 @@
+﻿@model FinalProject2019.ViewModels.QuoteIndexViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2 style="color:red">Quotes</h2>
+
+
+
+<style>
+    body {
+        background: url("/images/background-images-for-music-websites-9.jpg") no-repeat center center fixed;
+        background-size:25%;
+        background-repeat:repeat;
+        scrollbar-arrow-color:red
+         
+   
+       
+    }
+</style>
+<form style="font-size:large;">
+ <a asp-area="" asp-controller="Quotes" asp-action="NewQuote" class="btn btn-danger;">Add Quote</a>
+    </form>
+
+<table class="table  table-bordered  table-hover" style="color:red;font-weight:bolder;font-family:Segoe UI Symbol;background-color:black;font-size:large">
+
+
+    <tbody>
+
+        <tr>
+           
+
+            <th style="color:red;font-family:Times New Roman, Times, serif"> The Music Quote</th>
+            <th style="color:red;font-family:Times New Roman,Times,serif">Song Title</th>
+            <th style="color:red;font-family:Times New Roman,Times,serif">The Artist</th>
+            <th style="color:red;font-family:Times New Roman,Times,serif">The Genre </th>
+            <th style="color:red;font-family:Times New Roman,Times,serif">Delete</th>
+        </tr>
+        @foreach (Quote quote in Model.Quotes)
+        {
+            <tr>
+                <td>@quote.quote</td>
+                <td>@quote.song</td>
+                <td>@quote.artist</td>
+                <td>@quote.genre</td>
+                <td>
+                    @using (Html.BeginForm("Delete", "Quotes", "Post"))
+                    {
+                        <input asp-for="quoteId" class="control-label" type="hidden" value="@quote.Id" />
+                        <input type="submit" value="Delete Quote" class="btn btn-default;" />
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+<body style="color:black; background-color:gray">
+</body>
+<audio controls autoplay>
+    <source src="~/NewFolder/Frankie_Beverly_Maze_-_Before_I_Let_Go_(mp3.pm)%20(1).mp3" type="audio/mpeg" />
+</audio>
